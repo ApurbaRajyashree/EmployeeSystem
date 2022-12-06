@@ -22,7 +22,9 @@ public class EmpController {
 
 	@GetMapping("/")
 	public String home(Model m) {
-		return findPaginated(0, m);
+		List<Employee> emp= service.getAllEmp();
+		m.addAttribute("emp", emp);
+		return "index";
 	}
 
 	@GetMapping("/addemp")
@@ -59,16 +61,7 @@ public class EmpController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/page/{pageno}")
-	public String findPaginated(@PathVariable int pageno, Model m) {
-
-		Page<Employee> emplist = service.getEMpByPaginate(pageno, 2);
-		m.addAttribute("emp", emplist);
-		m.addAttribute("currentPage", pageno);
-		m.addAttribute("totalPages", emplist.getTotalPages());
-		m.addAttribute("totalItem", emplist.getTotalElements());
-		return "index";
-	}
+	
 	
 	
 
