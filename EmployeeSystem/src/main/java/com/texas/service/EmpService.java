@@ -37,9 +37,6 @@ public class EmpService {
 		repo.deleteById(id);
 	}
 
-	public Page<Employee> getEMpByPaginate(int currentPage, int size) {
-		Pageable p = PageRequest.of(currentPage, size);
-		return repo.findAll(p);
-	}
+	
 
 }
